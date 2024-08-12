@@ -1,0 +1,30 @@
+<div class="flex flex-row mb-4 mt-8">
+  <div class="mr-2">Mode:</div>
+  <label class="mr-4">
+    <input type="radio" name="mode" [value]="Mode.Search" (change)="mode$.next(Mode.Search)" [ngModel]="mode$ | async"> Input
+  </label>
+  <label>
+    <input type="radio" name="mode" [value]="Mode.Quiz" (change)="mode$.next(Mode.Quiz)" [ngModel]="mode$ | async"> Asking
+  </label>
+</div>
+
+<ng-container *ngIf="{ drewCountry: drewCountry$ | async, mode: mode$ | async } as data">
+  <div *ngIf="data.mode === Mode.Search">
+    <countries-search
+      [name]="name"
+      [countries]="countries$ | async"
+      [sortBy]="sortBy$ | async"
+      [order]="order$ | async"
+      (nameChange)="onNameChange($event)"
+      (orderChange)="onOrderChange($event)"
+      (sortingChange)="onSortingChange($event)"
+    />
+  </div>
+
+  <div *ngIf="data.drewCountry && data.mode === Mode.Quiz">
+    <countries-quiz
+      [country]="data.drewCountry"
+      (redraw)="redraw$.next(undefined)"/>
+  </div>
+</ng-container>
+

@@ -1,0 +1,4 @@
+<div class="border border-gray-200 rounded p-4">
+  <img [src]="country?.flags?.png" width="20px" alt="country-flag">
+  <div *ngIf="!hideName">{{country?.name?.common}}</div>
+</div>
