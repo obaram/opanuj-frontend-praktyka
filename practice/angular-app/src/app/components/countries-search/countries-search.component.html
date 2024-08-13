@@ -1,0 +1,31 @@
+<div class="mb-6">
+  <countries-search-title text="Countries search"/>
+</div>
+
+<div class="flex flex-row justify-between mb-4">
+  <div class="flex flex-row">
+    <div class="font-bold">Sort by:</div>
+    <select (change)="onSortingChange($event)" [ngModel]="sortBy" >
+      <option value="alphabetically">alphabetically</option>
+      <option value="population">population</option>
+    </select>
+  </div>
+
+  <div class="flex flex-row">
+    <div class="font-bold">Order:</div>
+    <select (change)="onOrderChange($event)" [ngModel]="order">
+      <option value="ASC">Ascending</option>
+      <option value="DESC">Descending</option>
+    </select>
+  </div>
+</div>
+
+<div class="mb-4">
+  <input placeholder="search..." [value]="name" (input)="onNameChange($event)"/>
+</div>
+
+<div id="search_results" class="grid grid-cols-4 gap-4">
+<div *ngFor="let country of countries">
+  <country-card [country]="country"/>
+</div>
+</div>

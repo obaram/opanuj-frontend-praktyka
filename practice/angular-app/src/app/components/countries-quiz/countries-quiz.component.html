@@ -1,0 +1,6 @@
+<country-card [country]="country" [hideName]="true"></country-card>
+<input class="mt-6 w-full" placeholder="What is this country name?" [value]="name$.value" (input)="onNameChange($event)"/>
+<div class="flex flex-row gap-4 mt-6">
+  <button (click)="checkCountryName()">Check</button>
+  <button (click)="onRedraw()">Draw again</button>
+</div>
